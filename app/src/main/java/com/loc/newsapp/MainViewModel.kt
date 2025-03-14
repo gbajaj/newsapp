@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.loc.newsapp.domain.usecases.app_entry.AppEntryUseCases
-import com.loc.newsapp.presentation.onboarding.navgraph.Route
+import com.loc.newsapp.presentation.navgraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val appEntryUseCases: AppEntryUseCases
+    appEntryUseCases: AppEntryUseCases
 ) : ViewModel() {
     var splashCondition by mutableStateOf(true)
     var startDestination by mutableStateOf(Route.AppStartNavigation.route)

@@ -6,9 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.loc.newsapp.presentation.home.HomeScreen
-import com.loc.newsapp.presentation.home.HomeViewModel
+import com.loc.newsapp.domain.model.Article
+import com.loc.newsapp.presentation.details.DetailsScreen
 import com.loc.newsapp.presentation.onboarding.OnBoardingScreen
 import com.loc.newsapp.presentation.onboarding.OnBoardingViewModel
 import com.loc.newsapp.presentation.search.SearchScreen
@@ -40,7 +39,28 @@ fun NavGraph(
                 SearchScreen(
                     state = viewModel.state.value,
                     event = viewModel::onEvent,
-                    navigate = {})
+                    navigate = {
+                        navController.currentBackStackEntry?.savedStateHandle?.set("article", it)
+                        navController.navigate(Route.DetailsScreen.route)
+                    })
+            }
+        }
+
+        navigation(
+            startDestination = Route.NewsNavigatorScreen.route,
+            route = Route.DetailsScreen.route
+        ) {
+            composable(route = Route.NewsNavigatorScreen.route) {
+                val article: Article? =
+                    navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
+                if (article != null) {
+                    DetailsScreen(article = article,
+                        event = {},
+                        navigateUp = {
+                            navController.navigateUp()
+                        }
+                    )
+                }
             }
         }
     }

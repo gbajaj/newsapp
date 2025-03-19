@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -47,8 +48,10 @@ fun ArticleCard(
             contentDescription = null,
             modifier = Modifier
                 .size(ArticleCardSize)
-                .clip(MaterialTheme.shapes.medium)
+                .clip(MaterialTheme.shapes.medium),
+            contentScale = ContentScale.Crop
         )
+
         Column(
             verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier
@@ -73,9 +76,11 @@ fun ArticleCard(
                     ),
                 )
                 Spacer(modifier = Modifier.width(ExtraSmallPadding2))
-                Icon(painter = painterResource(id = R.drawable.ic_time),
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_time),
                     contentDescription = null, modifier = Modifier.size(SmallIconSize),
-                    tint = colorResource(id = R.color.body))
+                    tint = colorResource(id = R.color.body)
+                )
                 Spacer(modifier = Modifier.width(ExtraSmallPadding2))
                 Text(
                     text = article.publishedAt,

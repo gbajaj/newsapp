@@ -3,8 +3,8 @@ package com.loc.newsapp.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.loc.newsapp.data.remote.dto.NewsApi
-import com.loc.newsapp.data.remote.dto.NewsPagingSource
+import com.loc.newsapp.data.remote.NewsApi
+import com.loc.newsapp.data.remote.NewsPagingSource
 import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow

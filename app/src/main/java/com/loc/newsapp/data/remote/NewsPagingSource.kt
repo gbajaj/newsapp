@@ -1,7 +1,8 @@
-package com.loc.newsapp.data.remote.dto
+package com.loc.newsapp.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.loc.newsapp.data.remote.dto.NewsResponse
 import com.loc.newsapp.domain.model.Article
 
 class NewsPagingSource(

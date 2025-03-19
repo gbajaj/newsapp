@@ -2,7 +2,7 @@ package com.loc.newsapp.di
 
 import android.app.Application
 import com.loc.newsapp.data.manager.LocalUserManagerImpl
-import com.loc.newsapp.data.remote.dto.NewsApi
+import com.loc.newsapp.data.remote.NewsApi
 import com.loc.newsapp.data.repository.NewsRepositoryImpl
 import com.loc.newsapp.domain.manager.LocalUserManager
 import com.loc.newsapp.domain.repository.NewsRepository

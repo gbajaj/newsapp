@@ -1,4 +1,4 @@
-package com.loc.newsapp.data.remote.dto
+package com.loc.newsapp.data.remote
 
 import com.loc.newsapp.data.remote.dto.NewsResponse
 import com.loc.newsapp.util.Constants.API_KEY
@@ -11,6 +11,14 @@ interface NewsApi {
         @Query("page") page: Int,
         @Query("sources") sources: String,
         @Query("apiKey") api: String = API_KEY
-
     ): NewsResponse
+
+    @GET("everything")
+    suspend fun searchNews(
+        @Query("q") searchQuery: String,
+        @Query("page") page: Int,
+        @Query("sources") sources: String,
+        @Query("apiKey") api: String = API_KEY
+    ): NewsResponse
+
 }

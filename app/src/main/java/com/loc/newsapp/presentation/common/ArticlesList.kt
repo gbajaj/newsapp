@@ -14,6 +14,26 @@ import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.presentation.Dimens.ExtraSmallPadding2
 import com.loc.newsapp.presentation.Dimens.MediumPadding1
 
+
+@Composable
+fun ArticlesList(
+    modifier: Modifier = Modifier,
+    articles: List<Article>,
+    onClick: (Article) -> Unit
+) {
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(MediumPadding1),
+        contentPadding = PaddingValues(all = ExtraSmallPadding2)
+    ) {
+        items(
+            count = articles.size,
+        ) {
+            ArticleCard(article = articles[it], onClick = { onClick(articles[it]) })
+        }
+    }
+}
+
 @Composable
 fun ArticlesList(
     modifier: Modifier = Modifier,

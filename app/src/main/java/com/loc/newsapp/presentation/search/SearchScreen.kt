@@ -21,7 +21,7 @@ import com.loc.newsapp.ui.theme.NewsAppTheme
 fun SearchScreen(
     state: SearchState,
     event: (SearchEvent) -> Unit,
-    navigate: (Article) -> Unit
+    navigateToDetails: (Article) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -47,10 +47,8 @@ fun SearchScreen(
             val articles = it.collectAsLazyPagingItems()
             ArticlesList(
                 articles = articles,
-                onClick = navigate
-//                {
-//                    navigate(Route.DetailsScreen.route)
-//                }
+                onClick = navigateToDetails
+
             )
         }
     }

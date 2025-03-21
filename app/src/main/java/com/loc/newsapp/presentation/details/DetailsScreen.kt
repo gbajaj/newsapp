@@ -28,7 +28,6 @@ import com.loc.newsapp.domain.model.Source
 import com.loc.newsapp.presentation.Dimens
 import com.loc.newsapp.presentation.Dimens.MediumPadding1
 import com.loc.newsapp.presentation.details.components.DetailsTopBar
-import com.loc.newsapp.presentation.search.SearchEvent
 import com.loc.newsapp.ui.theme.NewsAppTheme
 
 @Composable
@@ -63,7 +62,7 @@ fun DetailsScreen(
                 }
             },
             onBookmarkClicked = {
-                event(DetailsEvent.SaveArticle)
+                event(DetailsEvent.UpsertDeleteArticle(article))
             },
             onBackClicked = navigateUp
         )

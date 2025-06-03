@@ -10,14 +10,14 @@ import com.loc.newsapp.data.remote.NewsApi
 import com.loc.newsapp.data.repository.NewsRepositoryImpl
 import com.loc.newsapp.domain.manager.LocalUserManager
 import com.loc.newsapp.domain.repository.NewsRepository
-import com.loc.newsapp.domain.usecases.news.NewsUseCases
 import com.loc.newsapp.domain.usecases.app_entry.AppEntryUseCases
 import com.loc.newsapp.domain.usecases.app_entry.ReadAppEntry
 import com.loc.newsapp.domain.usecases.app_entry.SaveAppEntry
 import com.loc.newsapp.domain.usecases.news.DeleteArticle
-import com.loc.newsapp.domain.usecases.news.GetNews
-import com.loc.newsapp.domain.usecases.news.SearchNews
 import com.loc.newsapp.domain.usecases.news.GetArticle
+import com.loc.newsapp.domain.usecases.news.GetNews
+import com.loc.newsapp.domain.usecases.news.NewsUseCases
+import com.loc.newsapp.domain.usecases.news.SearchNews
 import com.loc.newsapp.domain.usecases.news.SelectArticles
 import com.loc.newsapp.domain.usecases.news.UpsertArticle
 import com.loc.newsapp.util.Constants.BASE_URL
@@ -58,22 +58,22 @@ object AppModule {
     @Provides
     @Singleton
     fun providesNewsRepository(
-        newsApi: NewsApi
-    ): NewsRepository = NewsRepositoryImpl(newsApi)
+        newsApi: NewsApi,
+        newsDao: NewsDao
+    ): NewsRepository = NewsRepositoryImpl(newsApi, newsDao)
 
     @Provides
     @Singleton
     fun providesNewsUseCases(
         newsRepository: NewsRepository,
-        newsDao: NewsDao
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
             searchNews = SearchNews(newsRepository),
-            upsertArticle = UpsertArticle(newsDao = newsDao),
-            deleteArticle = DeleteArticle(newsDao = newsDao),
-            selectArticles = SelectArticles(newsDao = newsDao),
-            getArticle = GetArticle(newsDao = newsDao)
+            upsertArticle = UpsertArticle(newsRepository),
+            deleteArticle = DeleteArticle(newsRepository),
+            selectArticles = SelectArticles(newsRepository),
+            getArticle = GetArticle(newsRepository)
 
         )
     }
